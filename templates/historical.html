@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content text-center">
+
+    <form action="/history/" method="post">
+        <label for="name">Request Name</label>
+        <input type="text" id="name" class="small-font" name="name">
+
+        <label for="name">Keyword</label>
+        <input type="text" id="name" class="small-font" name="kw">
+
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
+{% endblock %}

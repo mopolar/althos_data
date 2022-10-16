@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script src="//www.amcharts.com/lib/4/core.js"></script>
+<script src="//www.amcharts.com/lib/4/charts.js"></script>
+<script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+<script>
+    am4core.useTheme(am4themes_animated);
+    var graph_data = {{ data| safe }};
+    console.log(graph_data)
+    console.log(typeof graph_data)
+    let chart = am4core.create("chartdiv", am4charts.XYChart);
+
+    let title = chart.titles.create();
+    title.text = "{{keyword}}";
+    title.fontSize = 25;
+    title.colors = 'white';
+    title.marginBottom = 30;
+    chart.data = graph_data;
+
+
+    let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.dataFields.category = "time";
+    categoryAxis.renderer.minGridDistance = 60;
+
+    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+    let series = chart.series.push(new am4charts.ColumnSeries());
+    series.dataFields.categoryX = "time";
+    series.dataFields.valueY = "value";
+    series.columns.template.strokeWidth = 0;
+    series.tooltipText = "{valueY.value}";
+
+    chart.cursor = new am4charts.XYCursor();
+
+    // Add distinctive colors for each column using adapter
+    series.columns.template.adapter.add("fill", (fill, target) => {
+        return chart.colors.getIndex(target.dataItem.index);
+    });
+</script>
+<div id="chartdiv"></div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content text-center">
+    <div class="flex-parent jc-center">
+        <button type="submit" class="green margin-right" onclick="location.href = '/region'">Interest by region</button>
+        <button type="submit" class="green margin-right" onclick="location.href = '/history'">Historical
+            interest</button>
+        <button type="submit" class="magenta margin-right" onclick="location.href = '/region-list'">Interest by region
+            API</button>
+        <button type="submit" class="magenta" onclick="location.href = '/history-list'">Historical interest API</button>
+    </div>
+
+</div>
+{% endblock %}

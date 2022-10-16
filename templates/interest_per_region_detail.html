@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content text-center">
+
+    <form action="/region/" method="post">
+        <label for="name">Request Name</label>
+        <input type="text" id="name" class="small-font" name="name">
+
+        <label for="name">First Keyword</label>
+        <input type="text" id="name" class="small-font" name="first_kw">
+
+        <label for="name">Second Keyword</label>
+        <input type="text" id="name" class="small-font" name="second_kw">
+
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
+{% endblock %}

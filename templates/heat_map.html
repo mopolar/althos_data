@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+<script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
+<script>
+    var data = {{ heat_data| safe }}
+    var map = AmCharts.makeChart("chartdiv", {
+        type: "map",
+        "theme": "dark",
+
+        colorSteps: 2,
+
+        "titles": [
+            {
+                "text": "{{ first }}",
+                "size": 18,
+                "color": "black"
+            },
+            {
+                "text": "{{ second }}",
+                "color": "white",
+                "size": 18
+            }
+        ],
+        dataProvider: {
+            map: "usaLow",
+            areas: data
+        },
+
+        areasSettings: {
+            autoZoom: true
+        },
+
+        valueLegend: {
+            right: 10,
+            minValue: 0,
+            maxValue: 1
+        }
+
+    });
+</script>
+<div id="chartdiv"></div>
+
+{% endblock %}
